@@ -1,0 +1,20 @@
+from telegram.ext import Updater, CommandHandler,CallbackQueryHandler
+import requests
+import re
+import Commands
+from telegram import ReplyKeyboardMarkup
+com = Commands.Commands()
+updater = Updater('1120461749:AAF_gXcuweGZFpUJ_SdFQesGUxwWcZu0O-M',use_context=True)
+
+
+
+def main():
+    dp = updater.dispatcher
+    dp.add_handler(CommandHandler('start',com.start))
+    dp.add_handler(CommandHandler('get_currencies',com.get_currencies))
+    dp.add_handler(CallbackQueryHandler(com.button))
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
