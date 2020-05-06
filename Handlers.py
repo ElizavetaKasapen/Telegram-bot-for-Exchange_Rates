@@ -2,8 +2,10 @@ from telegram.ext import Updater, CommandHandler
 from telegram import ReplyKeyboardMarkup
 from telegram import InlineKeyboardMarkup,InlineKeyboardButton
 import Account_properties
+import Answers
 #import telebot
 properties=Account_properties.Account_properties()
+answ = Answers.Answers()
 class Handlers: 
     def choose_language(self,choose_language):
         if choose_language=='ukr': 
@@ -20,6 +22,35 @@ class Handlers:
     def choose_banks(self,choose_banks):
         txt='Ви обрали такі банки:\n'
         for key, value in choose_banks.items():
-            if value==True:txt+=key+"\n"
+            if value:txt+=key+"\n"
         return txt
-        
+    def choose_output(self,bank,currency):
+        out=''
+        if properties.get_language()=='ukr':out+="Купівля     Продаж\n" 
+        if properties.get_language()=='rus':out+="Купля       Продажа\n" 
+        if bank=='ПриватБанк':
+            for key, value in currency.items():
+                if value and key=='USD': out+='USD\n'+answ.privat_USD()
+                if value and key=='EUR': out+='EUR\n'+answ.privat_EUR()
+                if value and key=='RUB': out+='RUB\n'+answ.privat_RU()
+        if bank=='Альфа-Банк':
+            for key, value in currency.items():
+                if value and key=='USD': out+='USD\n'+answ.alfa_USD()
+                if value and key=='EUR': out+='EUR\n'+answ.alfa_EUR()
+                if value and key=='RUB': out+='RUB\n'+answ.alfa_RU()
+        if bank=='Ощадбанк':
+            for key, value in currency.items():
+                if value and key=='USD': out+='USD\n'+answ.oshad_USD()
+                if value and key=='EUR': out+='EUR\n'+answ.oshad_EUR()
+                if value and key=='RUB': out+='RUB\n'+answ.oshad_RU()       
+        if bank=='ПУМБ':
+            for key, value in currency.items():
+                if value and key=='USD': out+='USD\n'+answ.pumb_USD()
+                if value and key=='EUR': out+='EUR\n'+answ.pumb_EUR()
+                if value and key=='RUB': out+='RUB\n'+answ.pumb_RU()          
+        if bank=='Креді Агріколь':
+            for key, value in currency.items():
+                if value and key=='USD': out+='USD\n'+answ.agrikol_USD()
+                if value and key=='EUR': out+='EUR\n'+answ.agrikol_EUR()
+                if value and key=='RUB': out+='RUB\n'+answ.agrikol_RU()
+        return out

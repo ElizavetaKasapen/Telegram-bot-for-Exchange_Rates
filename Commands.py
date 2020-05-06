@@ -24,51 +24,52 @@ class Commands:
         update.message.reply_text('Оберіть час для відправлення повідомлення:', reply_markup=time_markup)
         language_markup = InlineKeyboardMarkup(boards.language_board())
         update.message.reply_text('Оберіть мову:', reply_markup=language_markup)
-    def get_currencies(self):
-        #if properties.get_language()=='ukr':txt_buy_sale="Купівля\tПродаж" 
-        #if properties.get_language()=='rus':txt_buy_sale="Купля\tПродажа" 
-        banks=properties.get_bank()
-        currencies=properties.get_currency()
-        for key, value in banks.items():
-            if value==True:txt+=key+"\n"
-            for key, value in currencies.items():
-                if properties.get_language()=='ukr':txt+="Купівля\tПродаж\n" 
-                if properties.get_language()=='rus':txt+="Купля\tПродажа\n" 
-                if value==True:txt+=key+"\n"
+    def get_currencies(self,update, context):
+        txt=''
+        banks_=properties.get_bank()
+        currencies_=properties.get_currency()
+        for b_key, b_value in banks_.items():
+            if b_value==True:
+                txt+="\n"+b_key+"\n"
+                txt+=handler.choose_output(b_key,currencies_)
+        context.bot.send_message(chat_id=update.message.chat_id, text=txt)
     def button(self,update, context):
         query = update.callback_query
         if query.data=='ukr'or query.data=='rus': 
             answ = handler.choose_language(query.data)
+            properties.set_language(query.data)
             query.edit_message_text(text=answ)
         if query.data=='USD':
-            self.currencies['USD']=True
+            self.currencies['USD']=not self.currencies['USD']
             self.change_buttons_curr(update,self.currencies)
         if query.data=='EUR':
-            self.currencies['EUR']=True
+            self.currencies['EUR']=not self.currencies['EUR']
             self.change_buttons_curr(update,self.currencies)
         if query.data=='RUB':
-            self.currencies['RUB']=True
+            self.currencies['RUB']=not self.currencies['RUB']
             self.change_buttons_curr(update,self.currencies)
         if query.data=='done_curr':
             answ=handler.choose_currency(self.currencies)
             query.edit_message_text(text=answ)
+            properties.set_currency(self.currencies)
         if query.data=='ПриватБанк':
-            self.banks['ПриватБанк']=True
+            self.banks['ПриватБанк']=not self.banks['ПриватБанк']
             self.change_buttons_banks(update,self.banks)
         if query.data=='Альфа-Банк':
-            self.banks['Альфа-Банк']=True
+            self.banks['Альфа-Банк']=not self.banks['Альфа-Банк']
             self.change_buttons_banks(update,self.banks)
         if query.data=='Ощадбанк':
-            self.banks['Ощадбанк']=True
+            self.banks['Ощадбанк']=not self.banks['Ощадбанк']
             self.change_buttons_banks(update,self.banks)
         if query.data=='Креді Агріколь':
-            self.banks['Креді Агріколь']=True
+            self.banks['Креді Агріколь']=not self.banks['Креді Агріколь']
             self.change_buttons_banks(update,self.banks)
         if query.data=='ПУМБ':
-            self.banks['ПУМБ']=True
+            self.banks['ПУМБ']=not self.banks['ПУМБ']
             self.change_buttons_banks(update,self.banks)
         if query.data=='done_banks':
             answ=handler.choose_banks(self.banks)
+            properties.set_bank(self.banks)
             query.edit_message_text(text=answ)  
         if query.data=='9:00':
             properties.set_time('9:00')
