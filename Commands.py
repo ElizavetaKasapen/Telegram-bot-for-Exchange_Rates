@@ -7,6 +7,10 @@ import Account_properties
 import Handlers
 import Keyboards
 from datetime import datetime
+import DB
+import Str_for_DB
+srt_db=Str_for_DB.Str_for_DB()
+db_=DB.DB()
 handler=Handlers.Handlers()
 properties=Account_properties.Account_properties()
 boards = Keyboards.Keyboards()
@@ -24,7 +28,9 @@ class Commands:
         update.message.reply_text('Оберіть час для відправлення повідомлення:', reply_markup=time_markup)
         language_markup = InlineKeyboardMarkup(boards.language_board())
         update.message.reply_text('Оберіть мову:', reply_markup=language_markup)
+        
     def get_currencies(self,update, context):
+        db_.add_user(str(update.message.from_user.id),srt_db.srt_for_banks(properties.get_bank()),srt_db.srt_for_curr(properties.get_currency()),properties.get_language,properties.get_time)
         txt=''
         banks_=properties.get_bank()
         currencies_=properties.get_currency()
@@ -33,6 +39,7 @@ class Commands:
                 txt+="\n"+b_key+"\n"
                 txt+=handler.choose_output(b_key,currencies_)
         context.bot.send_message(chat_id=update.message.chat_id, text=txt)
+
     def button(self,update, context):
         query = update.callback_query
         if query.data=='ukr'or query.data=='rus': 

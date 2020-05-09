@@ -26,8 +26,8 @@ class Handlers:
         return txt
     def choose_output(self,bank,currency):
         out=''
-        if properties.get_language()=='ukr':out+="Купівля     Продаж\n" 
-        if properties.get_language()=='rus':out+="Купля       Продажа\n" 
+        if properties.get_language()=='ukr':out+="Купівля           Продаж\n" 
+        if properties.get_language()=='rus':out+="Купля             Продажа\n" 
         if bank=='ПриватБанк':
             for key, value in currency.items():
                 if value and key=='USD': out+='USD\n'+answ.privat_USD()
