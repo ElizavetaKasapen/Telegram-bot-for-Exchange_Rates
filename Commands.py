@@ -30,7 +30,7 @@ class Commands:
         update.message.reply_text('Оберіть мову:', reply_markup=language_markup)
         
     def get_currencies(self,update, context):
-        db_.add_user(str(update.message.from_user.id),srt_db.srt_for_banks(properties.get_bank()),srt_db.srt_for_curr(properties.get_currency()),properties.get_language,properties.get_time)
+        #db_.add_user(str(update.message.from_user.id),srt_db.srt_for_banks(properties.get_bank()),srt_db.srt_for_curr(properties.get_currency()),properties.get_language(),properties.get_time())
         txt=''
         banks_=properties.get_bank()
         currencies_=properties.get_currency()

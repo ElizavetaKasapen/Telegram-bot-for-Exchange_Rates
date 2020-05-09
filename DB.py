@@ -13,16 +13,18 @@ class DB:
         if force:
             self.c.execute('DROP TABLE IF EXISTS account_prop')
         self.c.execute('''CREATE TABLE IF NOT EXISTS account_prop(
-             id INTEGER PRIMARY KEY,
              user_id TEXT NOT NULL,
              banks TEXT NOT NULL,
              currencies TEXT NOT NULL,
-             language TEXT
+             language_ TEXT
+             time_ TEXT
              )''')
         self.con.commit()
     def add_user(self,user_id:str,banks:str,currencies:str,language:str='ukr',time:str='9:00'):
         self.con=self.get_connection()
         self.c=self.con.cursor()
-        self.c.execute('INSERT INTO account_prop(user_id,banks,currencies,language,time)  VALUES(?,?,?,?,?)',(user_id,banks,currencies,language,time))
+        self.albums = [(user_id,banks,currencies,language,time)]
+        #self.c.execute('INSERT INTO account_prop VALUES(?)',self.albums)
+        self.c.execute('INSERT INTO account_prop VALUES(?,?,?,?,?)',(user_id,banks,currencies,language,time))
         self.con.commit()
         
