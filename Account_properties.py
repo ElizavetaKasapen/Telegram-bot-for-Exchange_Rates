@@ -1,5 +1,9 @@
 from datetime import datetime
 class Account_properties:
+    def get_adm (self): 
+        return self.adm
+    def set_adm(self, adm): 
+        self.adm = adm
     #Выбор языка
     def get_language (self): 
         return self.language

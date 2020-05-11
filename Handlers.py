@@ -3,6 +3,8 @@ from telegram import ReplyKeyboardMarkup
 from telegram import InlineKeyboardMarkup,InlineKeyboardButton
 import Account_properties
 import Answers
+import DB
+db_=DB.DB()
 #import telebot
 properties=Account_properties.Account_properties()
 answ = Answers.Answers()
@@ -24,10 +26,10 @@ class Handlers:
         for key, value in choose_banks.items():
             if value:txt+=key+"\n"
         return txt
-    def choose_output(self,bank,currency):
+    def choose_output(self,bank,currency,id):
         out=''
-        if properties.get_language()=='ukr':out+="Купівля             Продаж\n" 
-        if properties.get_language()=='rus':out+="Купля               Продажа\n" 
+        if db_.select_language(id)=='ukr':out+="Купівля             Продаж\n" 
+        if db_.select_language(id)=='rus':out+="Купля               Продажа\n" 
         if bank=='ПриватБанк':
             for key, value in currency.items():
                 if value and key=='USD': out+='USD\n'+answ.privat_USD()

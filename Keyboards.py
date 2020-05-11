@@ -10,6 +10,9 @@ class Keyboards:
         self.keyboard = [[InlineKeyboardButton("Українська", callback_data='ukr'),
                  InlineKeyboardButton("Російська", callback_data='rus')]]
         return self.keyboard
+    def save_board(self):
+        self.keyboard = [[InlineKeyboardButton("✔", callback_data='save')]]
+        return self.keyboard
     def currency_board(self,curr):
         txt1="USD" if  not curr["USD"] else "USD✔"
         txt2="EUR" if  not curr["EUR"] else "EUR✔"
