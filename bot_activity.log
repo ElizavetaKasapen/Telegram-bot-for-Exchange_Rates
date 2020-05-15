@@ -1,0 +1,31 @@
+2020-05-12 02:06:37,483 - root - INFO - Start bot
+2020-05-12 02:09:15,021 - root - INFO - Start bot
+2020-05-12 02:09:27,223 - root - INFO - Saving person with 344587463 ID
+2020-05-12 02:10:11,810 - root - INFO - 
+ПриватБанк
+Купівля             Продаж
+EUR
+28.70000uah    29.35000uah 
+RUB
+0.32500uah    0.37000uah 
+
+2020-05-12 02:10:29,578 - root - INFO - Msg to adm:/message_to_administrator hi
+User name: @Elizaveta_Kasapen
+2020-05-12 02:12:59,305 - root - INFO - Start bot
+2020-05-12 02:16:16,587 - root - INFO - Start bot
+2020-05-12 02:19:06,706 - root - INFO - Start bot
+2020-05-12 02:19:26,748 - root - INFO - Saving person with 344587463 ID
+2020-05-12 02:19:48,826 - root - INFO - banks statistics:ПриватБанк: 2 пользователей
+Альфа-Банк: 0 пользователей
+Ощадбанк: 0 пользователей
+ПУМБ: 0 пользователей
+Креді Агріколь: 0 пользователей
+
+2020-05-12 02:19:54,026 - root - INFO - time statistics:9:00: 1 пользователей
+15:00: 1 пользователей
+21:00: 0 пользователей
+
+2020-05-12 02:19:57,763 - root - INFO - currencies statistics:USD: 0 пользователей
+EUR: 2 пользователей
+RUB: 1 пользователей
+
