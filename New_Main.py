@@ -7,25 +7,21 @@ import DB
 import Account_properties
 import sqlite3
 import logging
+import Str_for_DB
+
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     filename='bot_activity.log')
 global admin_id 
 admin_id ='344587463'
 db_=DB.DB()
-#import Time
-#time_=Time.Time()
 com = Commands.Commands()
 updater = Updater('1120461749:AAF_gXcuweGZFpUJ_SdFQesGUxwWcZu0O-M',use_context=True)
 properties=Account_properties.Account_properties()
-#global __connection    
-#__connection=None  
-import Str_for_DB
 srt_db=Str_for_DB.Str_for_DB()
 
 ##########################################
 def get_connection():
-        #if self.__connection is None:
         __connection=sqlite3.connect('properties.db')
         return __connection
 
@@ -38,7 +34,7 @@ def msg_to_adm(update, context):
         text = update.message.text  #ПОЛУЧИТЬ СООБЩЕНИЕ ПОЛЬЗОВАТЕЛЯ
         context.bot.send_message(chat_id=properties.get_adm(), text=text+out)
         logging.info('Msg to adm:'+text+out)
-def get_user_id(update):                                                        #НЕ РАБОТАЕТ 
+def get_user_id(update):                                                        
         id_=update.message.from_user.id
         return id_
 ##########################################
@@ -115,6 +111,8 @@ def message_to_users(update, context):
         itm=val[0]
         context.bot.send_message(chat_id=itm, text=txt[1])
     logging.info('Msg to users:'+txt[1])
+
+    
 def main():
     logging.info('Start bot')
     properties.set_adm(admin_id)
