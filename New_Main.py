@@ -112,7 +112,7 @@ def message_to_users(update, context):
         context.bot.send_message(chat_id=itm, text=txt[1])
     logging.info('Msg to users:'+txt[1])
 
-    
+
 def main():
     logging.info('Start bot')
     properties.set_adm(admin_id)
@@ -133,7 +133,7 @@ def main():
     updater.start_polling()
     updater.idle()
 
-if __name__ == '__main__':
-    db_.init_db()
-    main()
+#if __name__ == '__main__':
+  #  db_.init_db()
+  #  main()
 
