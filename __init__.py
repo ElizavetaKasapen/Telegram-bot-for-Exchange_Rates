@@ -1,5 +1,5 @@
-import New_Main
+##import New_Main
 
 
-New_Main.db_.init_db()
-New_Main.main()
+#New_Main.db_.init_db()
+#New_Main.main()

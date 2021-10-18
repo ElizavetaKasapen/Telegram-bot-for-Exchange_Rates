@@ -133,7 +133,7 @@ def main():
     updater.start_polling()
     updater.idle()
 
-#if __name__ == '__main__':
-  #  db_.init_db()
-  #  main()
+if __name__ == '__main__':
+    db_.init_db()
+    main()
 
